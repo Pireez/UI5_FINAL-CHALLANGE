@@ -1,0 +1,24 @@
+:root{
+    --white-text: white;
+    --orange-black: rgb(214, 104, 0);
+
+
+    --sapButton_TextColor:var(--white-text);
+    --sapButton_Hover_TextColor:var(--orange-black);
+
+    
+    --colot-background: var(--orange-black);
+    --sapTab_Selected_TextColor: var(--orange-black);
+    --sapTab_IconColor: var(--orange-black);
+    --sapTab_ForegroundColor: var(--orange-black);
+}
+
+.noHeaderLine .sapMPanelHdr {
+    border-bottom: none !important;
+}
+
+.sapMBtnInner{
+    background-color: var(--orange-black);
+    border-color: var(--orange-black);
+}
+

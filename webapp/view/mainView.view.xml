@@ -1,0 +1,22 @@
+<mvc:View 
+    controllerName="ui5finalchallenge.controller.mainView"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:core="sap.ui.core">
+
+    <f:DynamicPage>
+        <f:content>
+            <IconTabBar>
+                <items>
+                    <IconTabFilter key="consultPortal" text="Portal de Consulta">
+                            <core:Fragment fragmentName="ui5finalchallenge.view.fragments.consultPortal" />
+                    </IconTabFilter>
+
+                    <IconTabFilter key="dashboard" text="Dashboard" />
+
+                </items>
+            </IconTabBar>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

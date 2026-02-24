@@ -1,0 +1,167 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:core="sap.ui.core"
+    xmlns:tb="sap.ui.table">
+
+    <Title 
+        class="sapUiSmallMarginTop sapUiSmallMarginBottom"
+        text="Portal de consulta de saldo RCs"
+        level="H1"
+    />
+
+    <Panel 
+        headerText="Filtros"
+        class="noHeaderLine"
+        backgroundDesign="Solid">
+        <HBox 
+            class="sapUiSmallMarginBottom" 
+            justifyContent="SpaceBetween" 
+            alignItems="End">
+
+            <VBox>
+                <Label text="Número da Requisição:" />
+                <Input placeholder="Digite o número..." />
+            </VBox>
+
+            <VBox>
+                <Label text="Solicitante" />
+                <MultiComboBox items="{/Solicitantes}">
+                    <core:Item key="{key}" text="{text}" />
+                </MultiComboBox>
+            </VBox>
+
+            <VBox>
+                <Label text="Status" />
+                <MultiComboBox items="{/StatusOptions}">
+                    <core:Item key="{key}" text="{text}" />
+                </MultiComboBox>
+            </VBox>
+
+             <VBox>
+                <Label text="Data de Criação" />
+                <DatePicker valueFormat="yyyy-MM-dd" displayFormat="long" /> 
+            </VBox>
+
+ 
+            <Button text="Iniciar"/>
+
+            <VBox width="200px"></VBox>
+        </HBox>
+    </Panel>
+
+    <tb:Table
+        class="onBorderTable sapUiSmallMarginTop"
+        id="idTable"
+        rows="{/BuyerRequests}"
+        firstVisibleRow="5"
+        threshold="5"
+        selectionMode="None">
+
+        <tb:extension>
+            <OverflowToolbar>
+                <Title 
+                    id="idTitle" 
+                    text="{
+                        path: '/BuyerRequests',
+                        parameters: { $count: true },
+                        formatter: '.formatTitleCount'
+                    }" />
+                
+                <ToolbarSpacer />
+                
+                <SearchField 
+                    width="300px"
+                    search=".onSearch" />
+            </OverflowToolbar>
+        </tb:extension>
+
+        <tb:columns>
+
+            <tb:Column width="150px" hAlign="Begin">
+                <Label text="Nº da Requisição" />
+                <tb:template>
+                    <Text text="{ 
+                        path: 'request', 
+                        type: 'sap.ui.model.type.String' 
+                    }" />
+                </tb:template>
+            </tb:Column>
+
+            <tb:Column width="160px" hAlign="Begin">
+                <Label wrapping="true" text="Classificação Contábil" />
+                <tb:template>
+                    <Text text="{
+                        path: 'classification_id',
+                        formatter: '.formatter.formatClassification'
+                    }" />
+                </tb:template>
+            </tb:Column>
+
+            <tb:Column width="150px" hAlign="Begin">
+                <Label wrapping="true" text="Grupo Comprador" />
+                <tb:template>
+                    <Text text="{
+                        path: 'group_id',
+                        formatter: '.formatter.formatBuyerGroup'
+                    }" />
+                </tb:template>
+            </tb:Column>
+
+            <tb:Column width="150px" hAlign="Begin">
+                <Label wrapping="true" text="Material" />
+                <tb:template>
+                   <Text text="{material/description}"/>
+    
+                </tb:template>
+            </tb:Column>
+
+            <tb:Column width="100px" hAlign="Begin">
+                <Label wrapping="true" text="Quantidade" />
+                <tb:template>
+                    <Text 
+                        text="{quantity}"/>
+                </tb:template>
+            </tb:Column>
+
+            <tb:Column width="100px" hAlign="Begin">
+                <Label wrapping="true" text="Valor" />
+                <tb:template>
+                    <Text text="{
+                        parts: [
+                            {path: 'value'}, 
+                            {value: 'BRL'}
+                        ],
+                        type: 'sap.ui.model.type.Currency',
+                        formatOptions: {
+                            showMeasure: true,
+                            currencyCode: false
+                        }
+                    }" />
+                </tb:template>
+            </tb:Column>
+
+            <tb:Column hAlign="Center">
+                <Label wrapping="true" text="Status" />
+                <tb:template>
+                    <Text textAlign="Center" text="{status}" />
+                </tb:template>
+            </tb:Column>
+
+            <tb:Column width="55px" hAlign="Center">
+                <tb:template>
+                    <Button 
+                        icon="sap-icon://feeder-arrow"
+                        press="onDetailsOrders"
+                        type="Transparent"
+                        width="80%"
+                    />
+                </tb:template>
+            </tb:Column>
+
+        </tb:columns>
+
+    </tb:Table>
+
+</core:FragmentDefinition>

@@ -1,0 +1,118 @@
+{
+  "_version": "1.82.0",
+  "sap.app": {
+    "id": "ui5finalchallenge",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.20.3",
+      "toolsId": "ef53d5d5-b52f-4e62-9087-fef5a240ece8"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/request/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/mainService/metadata.xml",
+          "odataVersion": "4.01"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "dependencies": {
+      "minUI5Version": "1.145.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "ui5finalchallenge.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "ui5finalchallenge.view",
+        "async": true,
+        "viewPath": "ui5finalchallenge.view"
+      },
+      "routes": [
+        {
+          "name": "RoutemainView",
+          "pattern": ":?query:",
+          "target": [
+            "TargetmainView"
+          ]
+        }
+      ],
+      "targets": {
+        "TargetmainView": {
+          "id": "mainView",
+          "name": "mainView"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "ui5finalchallenge.view.App",
+      "type": "XML",
+      "id": "App",
+      "async": true
+    }
+  }
+}
